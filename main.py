@@ -1,9 +1,11 @@
-from smbus2 import SMBus
-from bme280 import BME280
-import cv2
+#from smbus2 import SMBus
+#from bme280 import BME280
+import cv2 as cv
+import sys
+import math
 
-bus = SMBus(1)
-bme280 = BME280(i2c_dev=bus)
+#bus = SMBus(1)
+#bme280 = BME280(i2c_dev=bus)
 min_temp = 0
 max_temp = 0
 min_lux = 0
@@ -26,25 +28,38 @@ while plant == None:
 print(f"you chose {plant}!")
 
 if plant == "aloe": # Setting the parameters based on the chosen plant, need to do more research and testing before setting these.
-    min_lux = 1
-    min_temp = 1
-    max_lux = 1
-    max_temp = 1
+    min_lux = 1000
+    min_temp = 50
+    max_lux = 5000
+    max_temp = 86
 elif plant == "lemon":
-    min_lux = 1
-    min_temp = 1
-    max_lux = 1
-    max_temp = 1
+    min_lux = 10000
+    min_temp = 60
+    max_lux = 15000
+    max_temp = 95
 elif plant == "pepper":
-    min_lux = 1
-    min_temp = 1
-    max_lux = 1
-    max_temp = 1
+    min_lux = 1200
+    min_temp = 59
+    max_lux = 4000
+    max_temp = 85
 elif plant == "tomato":
-    min_lux = 1
-    min_temp = 1
-    max_lux = 1
-    max_temp = 1
+    min_lux = 5000
+    min_temp = 59
+    max_lux = 10000
+    max_temp = 85
 
-temperature = (bme280.get_temperature() * 1.8) + 32 #Formula to change temp to F. Will put this in a loop eventually.
-    
+#temperature = (bme280.get_temperature() * 1.8) + 32 #Formula to change temp to F. Will put this in a loop eventually.
+light = "in progress"
+key = None
+img = cv.imread("images\\blank.png")
+cv.imshow("Plant Mood", img)
+key = cv.waitKey(0)
+
+while key != ord("e"):
+    key = cv.waitKey(0)
+    #temperature = (bme280.get_temperature() * 1.8) + 32
+    if plant == "tomato":
+        #if min_temp <= temperature <= max_temp:
+            img = cv.imread("images\happy_tomato.png")
+            cv.imshow("Plant Mood", img)
+            
