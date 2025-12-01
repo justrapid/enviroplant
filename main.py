@@ -1,5 +1,5 @@
 from smbus2 import SMBus
-from bme280 import bme280
+from bme280 import BME280
 import cv2 as cv
 import sys
 import math
@@ -8,7 +8,7 @@ import time
 
 bus = SMBus(1)
 ltr559 = LTR559()
-bme280 = bme280(i2c_dev=bus)
+bme280 = BME280(i2c_dev=bus)
 min_temp = 0
 max_temp = 0
 min_lux = 0
