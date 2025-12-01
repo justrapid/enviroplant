@@ -36,7 +36,7 @@ if plant == "aloe": # Setting the parameters based on the chosen plant, need to 
     max_lux = 5000
     max_temp = 86
 elif plant == "lemon":
-    min_lux = 10000
+    min_lux = 7500
     min_temp = 60
     max_lux = 15000
     max_temp = 95
@@ -56,11 +56,11 @@ lux = (ltr559.get_lux() * 4) #Should be CLOSE to the true lux on the sensor.
 key = None
 img = cv.imread("images/blank.png")
 cv.imshow("Plant Mood", img)
-key = cv.waitKey(0)
+key = cv.waitKey(2)
 
 if plant == "aloe":
     while key != ord("e"):
-        key = cv.waitKey(0)
+        key = cv.waitKey(2)
         temperature = (bme280.get_temperature() * 1.8) + 21 
         lux = (ltr559.get_lux() * 4)
         if min_temp <= temperature <= max_temp and min_lux <= lux <= max_lux:
@@ -75,7 +75,7 @@ if plant == "aloe":
             print(f"Light = {lux} and temperature = {temperature}")
 if plant == "lemon":
     while key != ord("e"):
-        key = cv.waitKey(0)
+        key = cv.waitKey(2)
         temperature = (bme280.get_temperature() * 1.8) + 21
         lux = (ltr559.get_lux() * 4)
         if min_temp <= temperature <= max_temp and min_lux <= lux <= max_lux:
@@ -90,7 +90,7 @@ if plant == "lemon":
             print(f"Light = {lux} and temperature = {temperature}")
 if plant == "pepper":
     while key != ord("e"):
-        key = cv.waitKey(0)
+        key = cv.waitKey(2)
         temperature = (bme280.get_temperature() * 1.8) + 21
         lux = (ltr559.get_lux() * 4)
         if min_temp <= temperature <= max_temp and min_lux <= lux <= max_lux:
@@ -105,7 +105,7 @@ if plant == "pepper":
             print(f"Light = {lux} and temperature = {temperature}")
 if plant == "tomato":
     while key != ord("e"):
-        key = cv.waitKey(0)
+        key = cv.waitKey(2)
         temperature = (bme280.get_temperature() * 1.8) + 21
         lux = (ltr559.get_lux() * 4)
         if min_temp <= temperature <= max_temp and min_lux <= lux <= max_lux:
