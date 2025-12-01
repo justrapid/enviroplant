@@ -6,7 +6,6 @@ import math
 from ltr559 import LTR559
 import time
 
-
 bus = SMBus(1)
 ltr559 = LTR559()
 bme280 = bme280(i2c_dev=bus)
@@ -52,25 +51,70 @@ elif plant == "tomato":
     max_lux = 10000
     max_temp = 85
 
-temperature = (bme280.get_temperature() * 1.8) + 32 #Formula to change temp to F. Will put this in a loop eventually.
+temperature = (bme280.get_temperature() * 1.8) + 21 #Formula to change temp to F. Will put this in a loop eventually.
 lux = (ltr559.get_lux() * 4) #Should be CLOSE to the true lux on the sensor.
 key = None
-img = cv.imread("images\\blank.png")
+img = cv.imread("images/blank.png")
 cv.imshow("Plant Mood", img)
 key = cv.waitKey(0)
 
-if plant == "tomato":
+if plant == "aloe":
     while key != ord("e"):
         key = cv.waitKey(0)
-        temperature = (bme280.get_temperature() * 1.8) + 32
+        temperature = (bme280.get_temperature() * 1.8) + 21 
         lux = (ltr559.get_lux() * 4)
         if min_temp <= temperature <= max_temp and min_lux <= lux <= max_lux:
-            img = cv.imread("images\happy_tomato.png")
-            cv.imshow("Plant Mood", img)
-            time.sleep(1.0)
-        else:
-            img = cv.imread("images\sad_tomato.png")
+            img = cv.imread("images/happy_aloe.png")
             cv.imshow("Plant Mood", img)
             time.sleep(1.0)
             print(f"Light = {lux} and temperature = {temperature}")
-                
+        else:
+            img = cv.imread("images/sad_aloe.png")
+            cv.imshow("Plant Mood", img)
+            time.sleep(1.0)
+            print(f"Light = {lux} and temperature = {temperature}")
+if plant == "lemon":
+    while key != ord("e"):
+        key = cv.waitKey(0)
+        temperature = (bme280.get_temperature() * 1.8) + 21
+        lux = (ltr559.get_lux() * 4)
+        if min_temp <= temperature <= max_temp and min_lux <= lux <= max_lux:
+            img = cv.imread("images/happy_lemon.png")
+            cv.imshow("Plant Mood", img)
+            time.sleep(1.0)
+            print(f"Light = {lux} and temperature = {temperature}")
+        else:
+            img = cv.imread("images/sad_lemon.png")
+            cv.imshow("Plant Mood", img)
+            time.sleep(1.0)
+            print(f"Light = {lux} and temperature = {temperature}")
+if plant == "pepper":
+    while key != ord("e"):
+        key = cv.waitKey(0)
+        temperature = (bme280.get_temperature() * 1.8) + 21
+        lux = (ltr559.get_lux() * 4)
+        if min_temp <= temperature <= max_temp and min_lux <= lux <= max_lux:
+            img = cv.imread("images/happy_pepper.png")
+            cv.imshow("Plant Mood", img)
+            time.sleep(1.0)
+            print(f"Light = {lux} and temperature = {temperature}")
+        else:
+            img = cv.imread("images/sad_pepper.png")
+            cv.imshow("Plant Mood", img)
+            time.sleep(1.0)
+            print(f"Light = {lux} and temperature = {temperature}")
+if plant == "tomato":
+    while key != ord("e"):
+        key = cv.waitKey(0)
+        temperature = (bme280.get_temperature() * 1.8) + 21
+        lux = (ltr559.get_lux() * 4)
+        if min_temp <= temperature <= max_temp and min_lux <= lux <= max_lux:
+            img = cv.imread("images/happy_tomato.png")
+            cv.imshow("Plant Mood", img)
+            time.sleep(1.0)
+            print(f"Light = {lux} and temperature = {temperature}")
+        else:
+            img = cv.imread("images/sad_tomato.png")
+            cv.imshow("Plant Mood", img)
+            time.sleep(1.0)
+            print(f"Light = {lux} and temperature = {temperature}")
